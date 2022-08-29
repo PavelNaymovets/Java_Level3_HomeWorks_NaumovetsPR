@@ -93,11 +93,11 @@ public class Main<E> {
     // 1 задание
     private static <T> void swap(List<T> arr, int firstIndex, int secondIndex) throws IllegalAccessException {
         if (firstIndex > arr.size() - 1 || secondIndex > arr.size() - 1) {
-            throw new IllegalAccessException("Индекс за пределами массива");
+            throw new IllegalArgumentException("Индекс за пределами массива");
         } else if (firstIndex < 0 || secondIndex < 0) {
-            throw new IllegalAccessException("Индекс меньше нуля");
+            throw new IllegalArgumentException("Индекс меньше нуля");
         } else if (arr == null) {
-            throw new IllegalAccessException("Массив не передан");
+            throw new IllegalArgumentException("Массив не передан");
         }
         T buf = arr.get(firstIndex);
         arr.set(firstIndex, arr.get(secondIndex));
