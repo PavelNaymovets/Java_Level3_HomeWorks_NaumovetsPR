@@ -1,4 +1,4 @@
-package ru.gb.naumovets.infoFromLessons;
+package ru.gb.naumovets.infoFromLessons.lesson4;
 
 public class InterruptExample {
     public static void main(String[] args) throws InterruptedException {

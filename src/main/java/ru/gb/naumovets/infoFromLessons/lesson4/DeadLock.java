@@ -1,4 +1,4 @@
-package ru.gb.naumovets.infoFromLessons;
+package ru.gb.naumovets.infoFromLessons.lesson4;
 
 public class DeadLock {
     //Взаимная блокировка потоков
