@@ -35,4 +35,5 @@ public class MainClass {
         }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
     }
+
 }
