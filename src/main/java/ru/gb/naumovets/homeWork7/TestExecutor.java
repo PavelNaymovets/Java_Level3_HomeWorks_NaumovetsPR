@@ -45,6 +45,7 @@ public class TestExecutor {
             }
         }
 
+
         testMethods.sort((o1, o2) -> { //соратирую методы с аннотацией @Test, согласно ордеру
             Test o1Annotation = o1.getAnnotation(Test.class);
             Test o2Annotation = o2.getAnnotation(Test.class);
