@@ -1,7 +1,9 @@
 package ru.gb.naumovets.infoFromLessons.lesson2;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class JdbcDemo {
     private static Connection connection;
@@ -10,13 +12,15 @@ public class JdbcDemo {
     public static void main(String[] args) {
         try {
             connect();
+            readEx();
+            setStudentsEx();
 //            readExPreparedStatement();
 //            stmtBatchEx();
-            createTableEx();
-            psBatchEx();
+//            createTableEx();
+//            psBatchEx();
 //            deleteEx();
 //            insertEx();
-            readExFromStudents_1();
+//            readExFromStudents_1();
 //            updateEx();
 //            readExFromStudents_1();
 //            dropTableEx();
@@ -56,6 +60,21 @@ public class JdbcDemo {
                 System.out.println(resultSet.getInt(1) + " " + resultSet.getString("name") + " " + resultSet.getInt(3));
             }
         }
+    }
+
+    private static void setStudentsEx() throws SQLException{
+        List<Student> studentsList = new ArrayList<>();
+        try(ResultSet resultSet = stmt.executeQuery("SELECT * FROM students;")){
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                int score = resultSet.getInt("score");
+
+                Student student = new Student(id, name, score);
+                studentsList.add(student);
+            }
+        }
+        System.out.println(studentsList);
     }
 
     //Подготовленный запрос (скомпилированная версия SQL - выражения)
