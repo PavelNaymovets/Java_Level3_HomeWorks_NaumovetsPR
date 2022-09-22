@@ -12,8 +12,9 @@ public class JdbcDemo {
     public static void main(String[] args) {
         try {
             connect();
-            readEx();
-            setStudentsEx();
+//            readEx();
+            readNameEx();
+//            setStudentsEx();
 //            readExPreparedStatement();
 //            stmtBatchEx();
 //            createTableEx();
@@ -62,6 +63,12 @@ public class JdbcDemo {
         }
     }
 
+    private static void readNameEx() throws SQLException {
+        try (ResultSet resultSet = stmt.executeQuery("SELECT score FROM students WHERE Name = 'Jack';")) {
+            System.out.println(resultSet.getString(1));
+        }
+    }
+
     private static void setStudentsEx() throws SQLException{
         List<Student> studentsList = new ArrayList<>();
         try(ResultSet resultSet = stmt.executeQuery("SELECT * FROM students;")){
@@ -80,7 +87,7 @@ public class JdbcDemo {
     //Подготовленный запрос (скомпилированная версия SQL - выражения)
     private static void readExPreparedStatement() throws SQLException{
         PreparedStatement ps = connection.prepareStatement("SELECT * FROM students WHERE id = ?;");
-        ps.setInt(1,1);
+        ps.setInt(1,3);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             System.out.println(rs.getInt(1) + " " + rs.getString("name") + " " + rs.getInt(3));
