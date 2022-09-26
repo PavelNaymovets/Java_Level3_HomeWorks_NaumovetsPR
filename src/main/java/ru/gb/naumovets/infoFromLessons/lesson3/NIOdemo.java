@@ -3,7 +3,9 @@ package ru.gb.naumovets.infoFromLessons.lesson3;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NIOdemo {
     // Java <===== OS =====> resource
@@ -11,19 +13,33 @@ public class NIOdemo {
     //InputStream, OutputStream - переносят байты
     //Reader, Writer - переносит символы (умеют транслировать символы в байты)
 
-    public static void main(String[] args) {
-        File file = new File("files/file.txt");
+    public static void main(String[] args) throws IOException {
+//        File file = new File("files/file.txt");
+        File file = new File("files/f.txt");
+//        file.createNewFile();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        FileOutputStream fos = new FileOutputStream(file);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        while (true) {
+            bw.write(bufferedReader.readLine() + "\n");
+            if (bufferedReader.readLine().equals("exit")) {
+                bw.flush();
+                break;
+            }
+        }
+
 //        System.out.println(file.exists());
 
-        Path file_1 = Path.of("files","file.txt"); //files/file.txt
+//        Path file_1 = Path.of("files","file.txt"); //files/file.txt
+
 
 //        createDirectory(file_1);
 //        deleteFile(file_1);
 //        createFile(file_1);
 //        writeTextToFile(file_1);
 //        System.out.println(readTextFromFile(file_1));
-        writeDataToFile(file_1, "Hi, i am from file");
-        System.out.println(readDataFromFile(file_1));
+//        writeDataToFile(file_1, "Hi, i am from file");
+//        System.out.println(readDataFromFile(file_1));
     }
 
     private static void writeDataToFile(Path file, String data){
@@ -41,7 +57,6 @@ public class NIOdemo {
         try {
             InputStream inputStream = Files.newInputStream(file);
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);//Java ходит в файл не при каждом запросе на чтение символа, а один раз и кладет в свой кэш
-
             String result = new String();
             byte[] buffer = new byte[2];
             while (bufferedInputStream.read(buffer) != -1){
