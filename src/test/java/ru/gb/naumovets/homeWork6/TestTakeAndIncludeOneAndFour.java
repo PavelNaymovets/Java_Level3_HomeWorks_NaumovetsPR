@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -29,10 +30,25 @@ class TestTakeAndIncludeOneAndFour {
         Assertions.assertArrayEquals(result, testObj.takeNumbersAfterFour(arr));
     }
 
+    @Test
+    void takeNumbersAfterFour(){
+        Assertions.assertThrows(RuntimeException.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                testObj.takeNumbersAfterFour(new int[]{});
+            }
+        });
+    }
+
     @ParameterizedTest
     @MethodSource("dataForArrayIncludeOneAndFour")
     void includeOneAndFour(int[] arr, boolean result) {
         Assertions.assertEquals(result, testObj.includeOneAndFour(arr));
+    }
+
+    @Test
+    void includeOneAndFour(){
+        Assertions.assertThrows(RuntimeException.class, () -> testObj.includeOneAndFour(new int[]{}));
     }
 
     public static Stream<Arguments> dataForArrayTakeNumberAfterFour(){
