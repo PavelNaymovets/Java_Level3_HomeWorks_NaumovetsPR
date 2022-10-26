@@ -15,4 +15,4 @@
    [ 4 4 4 4 ] -> false
    [ 1 4 4 1 1 4 3 ] -> false
 
-Для каждого метода были написаны тесты. Ссылка [тут](C:\Users\Павел\IdeaProjects\Java_Level3_HomeWorks_NaumovetsPR\src\test\java\ru\gb\naumovets\homeWork6\TestTakeAndIncludeOneAndFour.java).
+Для каждого метода были написаны тесты. Ссылка [тут](https://github.com/PavelNaymovets/Java_Level3_HomeWorks_NaumovetsPR/blob/homeWork6/src/test/java/ru/gb/naumovets/homeWork6/TestTakeAndIncludeOneAndFour.java).
